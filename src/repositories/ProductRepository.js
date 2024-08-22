@@ -9,26 +9,30 @@ module.exports = {
 
 	getTop10Newest: async () => {
 		const valorants = await DbContext.Product.findAll({
-			include: {
-				model: DbContext.Category,
-				as: 'Category',
-				where: {
-					name: 'valorant',
+			include: [
+				{
+					model: DbContext.Category,
+					as: 'Category',
+					where: {
+						name: 'valorant',
+					},
 				},
-				order: 'id DESC',
-				limit: 5,
-			},
+			],
+			order: [['id', 'DESC']],
+			limit: 0,
 		})
 		const phasmo = await DbContext.Product.findAll({
-			include: {
-				model: DbContext.Category,
-				as: 'Category',
-				where: {
-					name: 'phasmo',
+			include: [
+				{
+					model: DbContext.Category,
+					as: 'Category',
+					where: {
+						name: 'phasmo',
+					},
 				},
-				order: 'id DESC',
-				limit: 5,
-			},
+			],
+			order: [['id', 'DESC']],
+			limit: 5,
 		})
 		return [...valorants, ...phasmo]
 	},

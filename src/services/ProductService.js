@@ -20,15 +20,20 @@ module.exports = {
 			return res.status(500).json({ error: 'Internal server error' })
 		}
 	},
+	getTop10NewestProduct: async (req, res) => {
+		try {
+			return res.status(200).json(await ProductRepository.getTop10Newest())
+		} catch (error) {
+			console.log(error)
+			return res.status(500).json({ error: 'Internal server error' })
+		}
+	},
 	filterProduct: async (req, res) => {
 		try {
 			const { categoryName, name } = req.query
 			let products = []
 			if (categoryName && name) {
-				products = await ProductRepository.filterByCategoryAndName(
-					categoryName,
-					name
-				)
+				products = await ProductRepository.filterByCategoryAndName(categoryName, name)
 			} else if (categoryName) {
 				products = await ProductRepository.filterByCategory(categoryName)
 			} else if (name) {

@@ -134,7 +134,6 @@ module.exports = {
 	checkout: async (req, res) => {
 		try {
 			const order = await OrderRepository.getByUser(req.user)
-			const shipping = await OrderRepository.addShipping(req.body)
 			await OrderRepository.checkout(order, shipping)
 			return res.status(200).json(order)
 		} catch (error) {

@@ -17,8 +17,8 @@ module.exports = {
 		await order.save()
 	},
 
-	checkout: async (order, shipping) => {
-		order.set({ shippingId: shipping.id, order_date: new Date() })
+	checkout: async (order) => {
+		order.set({ order_date: new Date() })
 		await order.save()
 	},
 
@@ -43,7 +43,4 @@ module.exports = {
 	},
 
 	deleteOrderDetail: async (orderDetail) => await orderDetail.destroy(),
-
-	// Shipping
-	addShipping: async (shipping) => await DbContext.Shipping.create({ ...shipping }),
 }

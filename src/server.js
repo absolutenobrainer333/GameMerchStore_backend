@@ -28,5 +28,4 @@ app.use('/order', routerOrder)
 // Admin Route
 app.use('/productManagement', routerProductManagement)
 
-app.use('/*', (req, res) => res.status(404).json({ error: 'Internal server error' }))
-
+app.use('/*', (req, res) => res.status(404).json({ error: 'Page not found' }))
